@@ -3,10 +3,25 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import confetti from 'canvas-confetti';
 import { 
-  Heart, Music, Sparkles, X, Play, Pause, SkipForward, SkipBack, 
-  Calendar, MapPin, Smile, MessageCircle, Gift, Volume2, VolumeX, Cake, ChevronDown 
+  Music, Sparkles, X, Play, Pause, SkipForward, SkipBack, 
+  Calendar, Volume2, VolumeX, ChevronDown 
 } from 'lucide-react';
 import GinghamBirthdayCard from './GinghamBirthdayCard';
+
+/* ====== LETTER DATA ====== */
+const LETTER_LINES = [
+  { text: "Happy 18th Birthday, Salma ✨", style: "greeting" },
+  { text: "", style: "spacer" },
+  { text: "Nggak terasa ya, ternyata udah setahun kita saling kenal dan saling nemenin hari-hari yang lewat sejauh ini.", style: "body" },
+  { text: "", style: "spacer" },
+  { text: "Di hari ulang tahun kamu yang ke-18 ini, aku mau mendoakan banyak hal baik buat kamu. Semoga kamu senantiasa diberi kesehatan, kebahagiaan yang tulus, kedamaian hati, dan kemudahan dalam menggapai setiap mimpi yang sedang kamu tuju.", style: "body" },
+  { text: "", style: "spacer" },
+  { text: "Dan di momen spesial ini, aku juga mau minta maaf yang tulus kalau selama setahun ini aku sering bersikap menyebalkan, suka bikin kamu kesel, atau kadang kurang peka. Terima kasih banyak udah selalu sabar dan mau nerima aku apa adanya.", style: "body" },
+  { text: "", style: "spacer" },
+  { text: "Terima kasih udah hadir dan jadi bagian yang sangat berharga di hidupku. Selamat ulang tahun yang ke-18, Salma.", style: "body" },
+  { text: "", style: "spacer" },
+  { text: "Semoga tahun ini membawa banyak kebahagiaan baru dan hal-hal indah yang pantas kamu dapatkan.", style: "ps" },
+];
 
 /* ====== LETTER TYPEWRITER SUB-COMPONENT ====== */
 function LetterTypewriter() {
@@ -15,18 +30,6 @@ function LetterTypewriter() {
   const [currentLine, setCurrentLine] = useState(0);
   const [currentChar, setCurrentChar] = useState(0);
   const [displayedLines, setDisplayedLines] = useState([]);
-
-  const letterLines = [
-    { text: "Happy Birthday, Lucyna ❤️", style: "greeting" },
-    { text: "", style: "spacer" },
-    { text: "On this special day, I want to wish you good health, genuine happiness, peace of mind, and the fulfilment of every dream and ambition you pursue.", style: "body" },
-    { text: "", style: "spacer" },
-    { text: "Thank you for being such a wonderful and meaningful part of my life. Your kindness, your laughter, and all the little moments we share mean more to me than I could ever put into words. I may not be able to give you the world right now, but I hope these heartfelt words bring a little smile to your face today.", style: "body" },
-    { text: "", style: "spacer" },
-    { text: "May our journey continue to grow with warmth, care, and inspiration, always encouraging and supporting each other to become the best versions of ourselves.", style: "body" },
-    { text: "", style: "spacer" },
-    { text: "Happy birthday, my dearest. I hope the year ahead brings you everything beautiful that you deserve.", style: "ps" },
-  ];
 
   // Trigger typewriter when scrolled into view
   useEffect(() => {
@@ -45,9 +48,9 @@ function LetterTypewriter() {
   // Typewriter engine
   useEffect(() => {
     if (!started) return;
-    if (currentLine >= letterLines.length) return;
+    if (currentLine >= LETTER_LINES.length) return;
 
-    const line = letterLines[currentLine];
+    const line = LETTER_LINES[currentLine];
 
     // Spacer lines — skip immediately
     if (line.style === "spacer") {
@@ -88,7 +91,7 @@ function LetterTypewriter() {
     }
   }, [started, currentLine, currentChar]);
 
-  const isTyping = currentLine < letterLines.length;
+  const isTyping = currentLine < LETTER_LINES.length;
 
   const getLineStyle = (style) => {
     switch (style) {
@@ -185,8 +188,8 @@ function LetterTypewriter() {
               animation: 'fadeInUp 0.8s forwards 0.3s',
             }}
           >
-            <span style={{ color: '#60a5fa', fontSize: '0.85rem' }}>With all my love,</span><br />
-            <span style={{ fontFamily: 'var(--font-display)', fontSize: '1.2rem', color: '#38bdf8', textShadow: '0 0 10px rgba(56,189,248,0.5)' }}>Haikal</span>
+            <span style={{ color: '#60a5fa', fontSize: '0.85rem' }}>Dari aku,</span><br />
+            <span style={{ fontFamily: 'var(--font-display)', fontSize: '1.15rem', color: '#38bdf8', textShadow: '0 0 10px rgba(56,189,248,0.5)' }}>Yang sering nyebelin 🤍</span>
           </div>
         )}
       </div>
@@ -313,8 +316,8 @@ function FarewellSection({ onOpenCake }) {
           fontWeight: '400',
         }}
       >
-        Happy Birthday, Lucyna Majewska ❤️<br /><br />
-        May your year ahead be filled with genuine happiness, good health, and success in everything you do. I’m truly grateful to be able to celebrate you today, even though we’re miles apart. Distance may keep us from celebrating side by side, but it could never make this day feel any less special to me
+        Happy 18th Birthday, Salma ❤️<br /><br />
+        Semoga di usiamu yang ke-18 ini, kamu senantiasa dikelilingi kebahagiaan, kesehatan, dan kemudahan dalam setiap langkahmu. Terima kasih banyak untuk 1 tahun perkenalan yang berharga ini, dan maaf ya kalau selama ini aku sering bersikap menyebalkan. You truly deserve all the wonderful things in life.
       </p>
 
       {/* Center Flower Bucket PNG Ornament */}
@@ -349,7 +352,7 @@ function FarewellSection({ onOpenCake }) {
           marginBottom: '28px',
         }}
       >
-        — With endless love & affection 💙 —
+        — With sincere wishes & gratitude 💙 —
       </p>
 
       {/* Happy Birthday Wish Button */}
@@ -449,7 +452,7 @@ function PersonalMessageCard() {
             fontFamily: 'var(--font-body)',
           }}
         >
-          "I truly cherish your presence and all the thoughtful warmth you bring into my world. Your kindness, intelligence, grace, and courage have such a wonderful way of inspiring me every day. I hope my presence brings as much comfort, happiness, and warmth to your life as yours brings to mine"
+          "Satu tahun mengenalmu adalah hal yang selalu aku syukuri. Terima kasih untuk setiap cerita, tawa, dan kesabaranmu yang luar biasa. Maaf kalau selama ini aku sering membuatmu kesal atau bersikap menyebalkan, tapi kamu adalah salah satu orang paling berharga di hari-hariku. Selamat ulang tahun ke-18, Salma."
         </p>
       </div>
     </div>
@@ -550,24 +553,53 @@ export default function MainBirthdayPage() {
     }
   };
 
-  // 3. Polaroid Lightbox Modal State - Photos for Lucyna Majewska
+  // 3. Polaroid Lightbox Modal State - Photos for Salma
   const [selectedPhoto, setSelectedPhoto] = useState(null);
   const photoGallery = [
     { 
       id: 1, 
-      title: 'Lucyna Majewska ✨', 
-      date: 'Special Celebration', 
+      title: 'Salma ✨', 
+      date: 'Sweet 18', 
       location: 'Cherished Moment',
-      img: '/lucyna 1.jpeg',
-      rotation: '-2deg'
+      img: '/sal 1.jpeg',
+      rotation: '-2deg',
+      isVideo: false
     },
     { 
       id: 2, 
-      title: 'Forever in my heart 🌍', 
-      date: 'Miles Apart, But Our Hearts Close 💕', 
-      location: '',
-      img: '/lucyna 2.jpeg',
-      rotation: '2.5deg'
+      title: 'Special Moments 🎥', 
+      date: '1 Year Together', 
+      location: 'Memory Clip',
+      img: '/sal 2.mp4',
+      rotation: '2.5deg',
+      isVideo: true
+    },
+    { 
+      id: 3, 
+      title: 'That Sweet Smile 🤍', 
+      date: 'A Beautiful Memory', 
+      location: 'One Year Journey',
+      img: '/sal 3.jpeg',
+      rotation: '-1.8deg',
+      isVideo: false
+    },
+    { 
+      id: 4, 
+      title: 'Happy 18th Birthday 🌸', 
+      date: 'Special Milestone', 
+      location: 'Golden Days',
+      img: '/sal 4.jpeg',
+      rotation: '2.2deg',
+      isVideo: false
+    },
+    { 
+      id: 5, 
+      title: 'Welcoming Age 18 💫', 
+      date: 'Entering 18 Years', 
+      location: 'Always Grateful',
+      img: '/sal 5.jpeg',
+      rotation: '-2.5deg',
+      isVideo: false
     },
   ];
 
@@ -575,10 +607,11 @@ export default function MainBirthdayPage() {
   const jarRef = useRef(null);
   const [selectedNote, setSelectedNote] = useState(null);
   const jarNotes = [
-    "Every conversation with you leaves a lasting warmth that brightens my entire day. Thank you for being such an amazing person. 💙",
-    "I admire your intelligence, your gentle strength, and the grace with which you carry yourself. 🤍",
-    "You make the world feel softer, kinder, and so much more beautiful just by being in it. ✨",
-    "Thank you for being someone truly unforgettable. Wishing you all the love and happiness in the world. 🌸"
+    "Nggak kerasa ya udah setahun kita saling kenal. Makasih banyak udah selalu sabar nemenin dan dengerin ceritaku selama ini. 💙",
+    "Aku minta maaf yang tulus kalau selama setahun ini sering nyebelin atau bikin kesel. Makasih udah selalu sabar dan nerima aku apa adanya. 🤍",
+    "Selamat menyambut usia 18 tahun, Salma! Semoga semua impian dan rencana yang lagi kamu susun bisa tercapai satu per satu. ✨",
+    "Terima kasih untuk 1 tahun pertemanan yang berharga ini. Semoga hari-harimu di usia 18 selalu dipenuhi tawa dan kedamaian. 🌸",
+    "Kehadiran kamu itu selalu membawa ketenangan. Terima kasih udah jadi orang baik yang selalu aku syukuri keberadaannya. 💫"
   ];
 
   // 5. Final Birthday Cake Modal State
@@ -918,7 +951,7 @@ export default function MainBirthdayPage() {
           <span>🤍</span>
         </div>
 
-        {/* Title: Happy Birthday, My Dearest 🤍 Lucyna Majewska */}
+        {/* Title: Happy 18th Birthday, Salma 🤍 */}
         <div
           style={{
             fontFamily: 'var(--font-display)',
@@ -954,19 +987,19 @@ export default function MainBirthdayPage() {
               letterSpacing: '0.5px',
             }}
           >
-            Moje Kochanie ❤️
+            Salma 🤍
           </div>
           <div
             ref={agaaRef}
             style={{
-              fontSize: '2.8rem',
+              fontSize: '2.5rem',
               fontWeight: '600',
               color: '#ffffff',
               letterSpacing: '1px',
               textShadow: '0 0 20px rgba(255, 255, 255, 0.6)',
             }}
           >
-            Lucyna Majewska
+            Sweet 18 ✨
           </div>
         </div>
 
@@ -1021,7 +1054,7 @@ export default function MainBirthdayPage() {
           ref={dateRef}
           style={{
             fontSize: '0.78rem',
-            letterSpacing: '3.5px',
+            letterSpacing: '3px',
             color: 'rgba(224, 242, 254, 0.85)',
             fontWeight: '600',
             textTransform: 'uppercase',
@@ -1029,7 +1062,7 @@ export default function MainBirthdayPage() {
             marginBottom: '28px',
           }}
         >
-          WISHING YOU THE HAPPIEST BIRTHDAY 🤍
+          CELEBRATING 18 YEARS & 1 YEAR JOURNEY 🤍
         </div>
 
         {/* Scroll Down Bounce Arrow */}
@@ -1318,17 +1351,55 @@ export default function MainBirthdayPage() {
                 e.currentTarget.style.boxShadow = '0 12px 25px rgba(0,0,0,0.7)';
               }}
             >
-              <img
-                src={item.img}
-                alt={item.title}
-                style={{
-                  width: '100%',
-                  height: '210px',
-                  objectFit: 'cover',
-                  borderRadius: '4px',
-                  marginBottom: '10px',
-                }}
-              />
+              {item.isVideo || item.img.endsWith('.mp4') ? (
+                <div style={{ position: 'relative', width: '100%', height: '210px', borderRadius: '4px', overflow: 'hidden', marginBottom: '10px' }}>
+                  <video
+                    src={item.img}
+                    muted
+                    loop
+                    autoPlay
+                    playsInline
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      display: 'block',
+                    }}
+                  />
+                  <div
+                    style={{
+                      position: 'absolute',
+                      bottom: '8px',
+                      right: '8px',
+                      background: 'rgba(0, 0, 0, 0.65)',
+                      color: '#fff',
+                      fontSize: '0.72rem',
+                      fontWeight: '600',
+                      padding: '3px 8px',
+                      borderRadius: '12px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '4px',
+                      backdropFilter: 'blur(4px)',
+                    }}
+                  >
+                    <span>▶ Video</span>
+                  </div>
+                </div>
+              ) : (
+                <img
+                  src={item.img}
+                  alt={item.title}
+                  style={{
+                    width: '100%',
+                    height: '210px',
+                    objectFit: 'cover',
+                    borderRadius: '4px',
+                    marginBottom: '10px',
+                    display: 'block',
+                  }}
+                />
+              )}
               <p style={{ color: '#111111', fontSize: '0.88rem', fontWeight: '600', fontFamily: 'var(--font-display)' }}>
                 {item.title}
               </p>
@@ -1614,7 +1685,7 @@ export default function MainBirthdayPage() {
                 zIndex: 5,
               }}
             >
-              📜 A SPECIAL NOTE FOR LUCYNA MAJEWSKA 💙
+              📜 A SPECIAL NOTE FOR SALMA 💙
             </div>
 
             <p style={{ marginTop: '4px', fontFamily: 'var(--font-body)' }}>
@@ -1679,17 +1750,37 @@ export default function MainBirthdayPage() {
               <X size={18} />
             </button>
 
-            <img
-              src={selectedPhoto.img}
-              alt={selectedPhoto.title}
-              style={{
-                width: '100%',
-                maxHeight: '360px',
-                objectFit: 'cover',
-                borderRadius: '10px',
-                marginBottom: '14px',
-              }}
-            />
+            {selectedPhoto.isVideo || selectedPhoto.img.endsWith('.mp4') ? (
+              <video
+                src={selectedPhoto.img}
+                controls
+                autoPlay
+                loop
+                playsInline
+                style={{
+                  width: '100%',
+                  maxHeight: '360px',
+                  objectFit: 'contain',
+                  borderRadius: '10px',
+                  marginBottom: '14px',
+                  background: '#000',
+                  display: 'block',
+                }}
+              />
+            ) : (
+              <img
+                src={selectedPhoto.img}
+                alt={selectedPhoto.title}
+                style={{
+                  width: '100%',
+                  maxHeight: '360px',
+                  objectFit: 'cover',
+                  borderRadius: '10px',
+                  marginBottom: '14px',
+                  display: 'block',
+                }}
+              />
+            )}
 
             <div
               style={{
@@ -1746,10 +1837,10 @@ export default function MainBirthdayPage() {
           >
             <div style={{ fontSize: '3rem', marginBottom: '10px' }}>💖</div>
             <h3 className="neon-text" style={{ fontFamily: 'var(--font-display)', fontSize: '1.5rem', marginBottom: '8px' }}>
-              Happy Birthday, Lucyna!
+              Happy 18th Birthday, Salma!
             </h3>
             <p style={{ fontSize: '0.9rem', color: '#e0f2fe', marginBottom: '20px' }}>
-              Wishing the wonderful Lucyna Majewska a magical year ahead 💗
+              Semoga di usia 18 tahun ini, kamu selalu dikelilingi kebahagiaan, kesehatan, dan hal-hal baik 💗
             </p>
 
             <button

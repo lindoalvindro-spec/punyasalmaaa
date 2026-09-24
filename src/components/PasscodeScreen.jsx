@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
-import { Heart, Delete, X, Sparkles, KeyRound } from 'lucide-react';
+import { Delete, X, Sparkles, KeyRound } from 'lucide-react';
 
 export default function PasscodeScreen({ onUnlock }) {
   const containerRef = useRef(null);
@@ -9,14 +9,13 @@ export default function PasscodeScreen({ onUnlock }) {
   const titleRef = useRef(null);
   const dotsRef = useRef(null);
   const keypadRef = useRef(null);
-  const hintRef = useRef(null);
   const iconRingRef = useRef(null);
   
   const [pin, setPin] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
   const [sparks, setSparks] = useState([]);
   
-  const CORRECT_PIN = '190826';
+  const CORRECT_PIN = '112233';
   const PIN_LENGTH = 6;
 
   const bgParticles = Array.from({ length: 14 }).map((_, i) => ({
@@ -114,7 +113,7 @@ export default function PasscodeScreen({ onUnlock }) {
   };
 
   const verifyPin = (enteredPin) => {
-    if (enteredPin === CORRECT_PIN || enteredPin === '190826' || enteredPin === '1908' || enteredPin === '1308' || enteredPin === '1234') {
+    if (enteredPin === CORRECT_PIN || enteredPin === '112233' || enteredPin === '1122' || enteredPin === '1234') {
       const tl = gsap.timeline();
       
       tl.to(dotsRef.current, {
@@ -290,7 +289,7 @@ export default function PasscodeScreen({ onUnlock }) {
               letterSpacing: '0.5px',
             }}
           >
-            For You, Lucyna
+            For You, Salma
           </h2>
           <p
             className="neon-text-subtle"
@@ -311,7 +310,7 @@ export default function PasscodeScreen({ onUnlock }) {
               marginTop: '4px',
             }}
           >
-            Clue: 190826 ❤️
+            Clue: 112233 🤍
           </p>
         </div>
 

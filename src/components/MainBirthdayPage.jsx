@@ -513,9 +513,7 @@ export default function MainBirthdayPage() {
   const vinylRef = useRef(null);
 
   const playlist = [
-    { id: 1, title: 'Me Gustas Tu', artist: 'Manu Chao', duration: '3:58', src: '/Me Gustas Tu_spotdown.org.mp3' },
-    { id: 2, title: 'On Melancholy Hill', artist: 'Gorillaz', duration: '4:21', src: '/Gorillaz - On Melancholy Hill (Official Video).mp3' },
-    { id: 3, title: 'May This Be Love', artist: 'Jimi Hendrix', duration: '3:10', src: '/May This Be Love_spotdown.org.mp3' },
+    { id: 1, title: 'Raindance', artist: 'Dave (feat. Tems)', duration: '3:41', src: '/Raindance (feat. Tems).mp3' },
   ];
 
   // 2. Bouquet Flowers Compliment Messages State
@@ -709,13 +707,17 @@ export default function MainBirthdayPage() {
   };
 
   const nextTrack = () => {
-    const nextIdx = (currentTrack + 1) % playlist.length;
-    playSpecificTrack(nextIdx);
+    if (audioRef.current) {
+      audioRef.current.currentTime = 0;
+      audioRef.current.play().then(() => setIsPlaying(true)).catch(() => {});
+    }
   };
 
   const prevTrack = () => {
-    const prevIdx = (currentTrack - 1 + playlist.length) % playlist.length;
-    playSpecificTrack(prevIdx);
+    if (audioRef.current) {
+      audioRef.current.currentTime = 0;
+      audioRef.current.play().then(() => setIsPlaying(true)).catch(() => {});
+    }
   };
 
   const handleFlowerSelect = (key) => {
@@ -1425,7 +1427,7 @@ export default function MainBirthdayPage() {
           — SPECIAL SOUNDTRACK —
         </p>
         <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.45rem', marginBottom: '16px' }}>
-          Our Playlist
+          Special Soundtrack
         </h3>
 
         {/* Spinning Vinyl Disc */}
@@ -1529,7 +1531,7 @@ export default function MainBirthdayPage() {
         {/* 3 Interactive Playlist Song List Cards */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', textAlign: 'left' }}>
           <p style={{ fontSize: '0.78rem', color: '#38bdf8', fontWeight: '600', marginBottom: '2px', textAlign: 'center' }}>
-            📜 Soundtrack Selection:
+            🎵 Special Song:
           </p>
           {playlist.map((song, index) => {
             const isSelected = index === currentTrack;
